@@ -70,11 +70,20 @@ export default function App() {
       </nav>
 
       {/* Hero */}
-      <header className="relative min-h-[92vh] flex flex-col items-center justify-center px-6 pt-24 overflow-hidden bg-ink">
+      <header ref={heroRef} className="relative min-h-[92vh] flex flex-col items-center justify-center px-6 pt-24 overflow-hidden bg-ink">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[10%] left-[15%] w-[600px] h-[600px] bg-amber-700/15 rounded-full blur-[160px]" />
-          <div className="absolute bottom-[10%] right-[15%] w-[500px] h-[500px] bg-rose-700/15 rounded-full blur-[140px]" />
-          <div className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-800/10 rounded-full blur-[200px]" />
+          <div 
+            className="absolute top-[10%] left-[15%] w-[600px] h-[600px] bg-amber-700/15 rounded-full blur-[160px] transition-transform duration-200 ease-out"
+            style={{ transform: `translate(${mousePos.x * -20}px, ${mousePos.y * -20}px)` }}
+          />
+          <div 
+            className="absolute bottom-[10%] right-[15%] w-[500px] h-[500px] bg-rose-700/15 rounded-full blur-[140px] transition-transform duration-200 ease-out"
+            style={{ transform: `translate(${mousePos.x * 25}px, ${mousePos.y * 25}px)` }}
+          />
+          <div 
+            className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-violet-800/10 rounded-full blur-[200px] transition-transform duration-300 ease-out"
+            style={{ transform: `translate(calc(-50% + ${mousePos.x * 15}px), calc(-50% + ${mousePos.y * 15}px))` }}
+          />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto text-center">
@@ -83,24 +92,25 @@ export default function App() {
             436 ROWS • 9 CONFLICTS • $189.1B NOTIFIED
           </div>
 
-          <h1 className="font-display text-6xl sm:text-7xl md:text-9xl leading-[0.92] tracking-[-0.04em] mb-8">
-            <span className="text-parchment">Conflict</span>
+          <h1 className="font-display text-6xl sm:text-7xl md:text-9xl leading-[0.92] tracking-[-0.04em] mb-8 animate-fade-in-up">
+            <span className="text-parchment inline-block hover:text-amber-100 transition-colors duration-500">Conflict</span>
             <br />
-            <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-100 to-rose-200">Analytics</span>
+            <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-amber-100 to-rose-200 animate-gradient-shift">Analytics</span>
           </h1>
 
-          <p className="text-lg md:text-2xl text-[#a8a39a] max-w-3xl mx-auto leading-relaxed mb-12 font-light">
+          <p className="text-lg md:text-2xl text-[#a8a39a] max-w-3xl mx-auto leading-relaxed mb-12 font-light animate-fade-in-up animation-delay-200">
             A data-driven breakdown of how geopolitical threats drive U.S. defense procurement — from Gulf missile defense to Poland's unprecedented $51.7B eastern-flank build-up.
           </p>
 
-          <div className="flex flex-wrap justify-center gap-3 md:gap-4">
-            {navLinks.map((link) => (
+          <div className="flex flex-wrap justify-center gap-3 md:gap-4 animate-fade-in-up animation-delay-400">
+            {navLinks.map((link, idx) => (
               <a
                 key={link.id}
                 href={`#${link.id}`}
-                className="group flex items-center gap-2 bg-[#11162f]/80 border border-[#1e2842]/60 hover:border-amber-400/40 rounded-full px-5 py-2.5 text-sm font-semibold text-parchment hover:text-amber-200 transition-all hover:-translate-y-0.5 shadow-lg shadow-black/10"
+                className="group flex items-center gap-2 bg-[#11162f]/80 border border-[#1e2842]/60 hover:border-amber-400/40 rounded-full px-5 py-2.5 text-sm font-semibold text-parchment hover:text-amber-200 transition-all hover:-translate-y-0.5 shadow-lg shadow-black/10 animate-fade-in-up"
+                style={{ animationDelay: `${400 + idx * 80}ms` }}
               >
-                <link.icon size={16} className="text-amber-300 group-hover:scale-110 transition-transform" />
+                <link.icon size={16} className="text-amber-300 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300" />
                 {link.label}
               </a>
             ))}
