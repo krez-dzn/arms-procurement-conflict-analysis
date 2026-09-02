@@ -63,14 +63,11 @@ export default function Section1() {
 
           {/* Stats column */}
           <div className="flex flex-col gap-5">
-            {topEvents.slice(0, 5).map((ev, i) => (
+            {topEvents.slice(0, 5).map((ev) => (
               <div
                 key={ev.id}
                 className="group relative bg-[#11162f]/60 border border-[#1e2842]/50 hover:border-amber-500/40 rounded-2xl p-6 transition-all hover:-translate-y-1 hover:shadow-[0_20px_60px_-15px_rgba(240,168,50,0.1)]"
               >
-                <div className="absolute top-4 right-4 text-4xl font-black text-[#1a2238] group-hover:text-amber-900/30 transition-colors">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
                 <div className="flex items-start justify-between gap-4 mb-3">
                   <div>
                     <h4 className="text-lg font-bold text-[#f0e6c8] leading-tight">{ev.title}</h4>
